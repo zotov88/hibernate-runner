@@ -1,8 +1,8 @@
 package org.example.converter;
 
-import jakarta.persistence.AttributeConverter;
 import org.example.entity.BirthDate;
 
+import javax.persistence.AttributeConverter;
 import java.sql.Date;
 import java.util.Optional;
 
