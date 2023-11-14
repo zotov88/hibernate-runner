@@ -1,16 +1,17 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.entity.User;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class HibernateRunner {
 
-    private final static Logger log = LoggerFactory.getLogger(HibernateRunner.class);
+    // сделает lombok
+//    private final static Logger log = LoggerFactory.getLogger(HibernateRunner.class);
 
     public static void main(String[] args) {
 
