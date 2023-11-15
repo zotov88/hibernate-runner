@@ -1,16 +1,15 @@
 package org.example.entity;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 
 @Data
+@ToString(exclude = "company")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,17 +19,22 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    private String username;
-    private String firstname;
-    private String lastname;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    //    @Convert(converter = BirthdayConverter.class)
-    @Column(name = "birth_date")
-    private BirthDate birthDate;
+    @Column(unique = true)
+    private String username;
+
+    @Embedded
+    private PersonalInfo personalInfo;
 
     @Type(type = "dmdev")
     private String info;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
 }
