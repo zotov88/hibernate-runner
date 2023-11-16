@@ -21,7 +21,16 @@ public class HibernateRunner {
                 .name("Sber")
                 .build();
 
-        User user = User.builder()
+        User user1 = User.builder()
+                .username("ivan@gmail.com")
+                .personalInfo(PersonalInfo.builder()
+                        .firstname("Ivan")
+                        .lastname("Petrov")
+                        .build())
+                .company(company)
+                .build();
+
+        User user2 = User.builder()
                 .username("petr@gmail.com")
                 .personalInfo(PersonalInfo.builder()
                         .firstname("Ivan")
@@ -35,9 +44,19 @@ public class HibernateRunner {
             try (session1) {
                 Transaction transaction = session1.beginTransaction();
 
-                User user1 = session1.get(User.class, 1L);
-//                session1.save(company);
-//                session1.save(user);
+//                Company company1 = session1.get(Company.class, 1L);
+//                user1.setCompany(company1);
+//                user2.setCompany(company1);
+//                session1.save(user1);
+//                session1.save(user2);
+
+//                company.addUser(user1);
+//                company.addUser(user2);
+                Company company1 = session1.get(Company.class, 1L);
+                session1.delete(company1);
+
+
+
 
                 session1.getTransaction().commit();
             }

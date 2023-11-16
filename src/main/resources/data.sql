@@ -1,3 +1,12 @@
+drop table users;
+drop table company;
+
+create table company
+(
+    id   serial primary key,
+    name varchar(128)
+);
+
 create table users
 (
     id         bigserial primary key,
@@ -7,14 +16,8 @@ create table users
     birth_date date,
     info       jsonb,
     role       varchar(32),
-    company_id int references company (id)
+    company_id int references company (id) on delete cascade
 );
 
-create table company
-(
-    id   serial primary key,
-    name varchar(128)
-);
 
-drop table users;
-drop table company;
+
