@@ -1,3 +1,4 @@
+drop table profile;
 drop table users;
 drop table company;
 
@@ -17,6 +18,14 @@ create table users
     info       jsonb,
     role       varchar(32),
     company_id int references company (id) on delete cascade
+);
+
+create table profile
+(
+    id       bigserial primary key,
+    user_id  bigint not null unique references users (id), -- обязан быть not null unique для OneToOne
+    street   varchar(128),
+    language char(2)
 );
 
 
