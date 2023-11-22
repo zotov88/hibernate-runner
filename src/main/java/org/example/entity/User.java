@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Data
 @ToString(exclude = {"company", "profile"})
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users", schema = "public")
 @TypeDef(name = "dmdev", typeClass = JsonBinaryType.class)
-public class User {
+public class User extends AuditEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
